@@ -2,7 +2,7 @@
 
 Sistema de alertas comunitarias con scraping automático, verificación de confianza y notificaciones via Telegram para Ecuador.
 
-## 📋 Tabla de Contenidos
+## Tabla de Contenidos
 
 - [Descripción](#descripción)
 - [Prerequisitos](#prerequisitos)
@@ -15,7 +15,7 @@ Sistema de alertas comunitarias con scraping automático, verificación de confi
 
 ---
 
-## 📖 Descripción
+## Descripción
 
 Sistema completo de alertas comunitarias que:
 - Captura eventos de fuentes oficiales ecuatorianas (IGEPN, INAMHI, CNEL)
@@ -29,7 +29,7 @@ Sistema completo de alertas comunitarias que:
 
 ---
 
-## 🔧 Prerequisitos
+## Prerequisitos
 
 ### Software Requerido
 
@@ -55,7 +55,7 @@ Sistema completo de alertas comunitarias que:
 
 ---
 
-## 🚀 Instalación Paso a Paso
+## Instalación Paso a Paso
 
 ### Paso 1: Clonar el Repositorio
 
@@ -179,7 +179,7 @@ sacv_verifier       Up
 
 ---
 
-## ✅ Verificación del Sistema
+## Verificación del Sistema
 
 ### Verificación 1: Health Check de la API
 
@@ -267,7 +267,7 @@ docker logs sacv_notifier --tail 20
 
 ---
 
-## 🎯 Uso del Sistema
+## Uso del Sistema
 
 ### Acceder a la Documentación Interactiva (Swagger)
 
@@ -365,7 +365,7 @@ GROUP BY type;
 
 ---
 
-## 🏗️ Arquitectura
+## Arquitectura
 
 ### Diagrama del Sistema
 
@@ -419,7 +419,7 @@ GROUP BY type;
 
 ---
 
-## 📚 Documentación
+## Documentación
 
 ### Documentos Principales
 
@@ -450,7 +450,7 @@ Los eventos se verifican con 5 reglas (máximo 100 puntos):
 
 ---
 
-## 🛠️ Comandos Útiles
+## Comandos Útiles
 
 ### Gestión de Servicios
 
@@ -492,7 +492,7 @@ docker exec sacv_postgres psql -U sacv_user -d sacv_db -c "SELECT COUNT(*) FROM 
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Problema: Docker Desktop no está corriendo
 
@@ -565,7 +565,7 @@ docker logs sacv_postgres
 
 ---
 
-## 🎓 Para Estudiantes
+## Para Estudiantes
 
 ### Ejercicios Sugeridos
 
@@ -596,7 +596,7 @@ docker logs sacv_postgres
 
 ---
 
-## 📞 Soporte
+## Soporte
 
 **Repositorio**: https://github.com/CharlieCardenasToledo/sistema-alertas-comunitarias
 
@@ -606,13 +606,13 @@ docker logs sacv_postgres
 
 ---
 
-## 📄 Licencia
+## Licencia
 
 Proyecto académico - UIDE 2026
 
 ---
 
-## 👨‍💻 Autor
+## Autor
 
 **Charlie Cardenas Toledo**
 - GitHub: [@CharlieCardenasToledo](https://github.com/CharlieCardenasToledo)
@@ -621,7 +621,7 @@ Proyecto académico - UIDE 2026
 
 ---
 
-## 🙏 Agradecimientos
+## Agradecimientos
 
 - Instituto Geofísico del Ecuador (IGEPN)
 - Instituto Nacional de Meteorología e Hidrología (INAMHI)

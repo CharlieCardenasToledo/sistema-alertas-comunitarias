@@ -308,8 +308,8 @@ http://localhost:15672
 ```
 
 **Credenciales**:
-- Usuario: `guest`
-- Contraseña: `guest`
+- Usuario: `sacv`
+- Contraseña: `rabbitmq_secure_password_2026` (o la que configuraste en tu `.env`)
 
 **Queues a verificar**:
 - `raw_events` - Eventos crudos

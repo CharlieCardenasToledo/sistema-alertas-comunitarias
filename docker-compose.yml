@@ -1,0 +1,107 @@
+version: '3.8'
+
+services:
+  # Base de datos PostgreSQL
+  postgres:
+    image: postgres:15-alpine
+    container_name: sacv_postgres
+    environment:
+      POSTGRES_DB: sacv_db
+      POSTGRES_USER: sacv_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+      - ./services/database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - sacv_network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U sacv_user -d sacv_db" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # Cache Redis
+  redis:
+    image: redis:7-alpine
+    container_name: sacv_redis
+    command: redis-server --appendonly yes
+    volumes:
+      - ./data/redis:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - sacv_network
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+  # Message Broker RabbitMQ
+  rabbitmq:
+    image: rabbitmq:3.12-management-alpine
+    container_name: sacv_rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: sacv
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
+    volumes:
+      - ./data/rabbitmq:/var/lib/rabbitmq
+    ports:
+      - "5672:5672" # AMQP
+      - "15672:15672" # Management UI
+    networks:
+      - sacv_network
+    healthcheck:
+      test: [ "CMD", "rabbitmq-diagnostics", "ping" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+
+  # Scraper Service
+  scraper:
+    build: ./services/scraper
+    container_name: sacv_scraper
+    environment:
+      DATABASE_URL: postgresql://sacv_user:${DB_PASSWORD}@postgres:5432/sacv_db
+      REDIS_URL: redis://redis:6379
+      RABBITMQ_URL: amqp://sacv:${RABBITMQ_PASSWORD}@rabbitmq:5672
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - sacv_network
+    restart: unless-stopped
+
+  # API Gateway
+  api-gateway:
+    build: ./services/api-gateway
+    container_name: sacv_api
+    environment:
+      DATABASE_URL: postgresql://sacv_user:${DB_PASSWORD}@postgres:5432/sacv_db
+      JWT_SECRET: ${JWT_SECRET}
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - sacv_network
+    restart: unless-stopped
+
+networks:
+  sacv_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:
+  rabbitmq_data:

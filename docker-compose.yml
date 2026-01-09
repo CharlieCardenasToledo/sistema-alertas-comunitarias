@@ -97,6 +97,22 @@ services:
       - sacv_network
     restart: unless-stopped
 
+  # Verifier Service
+  verifier:
+    build: ./services/verifier
+    container_name: sacv_verifier
+    environment:
+      DATABASE_URL: postgresql://sacv_user:${DB_PASSWORD}@postgres:5432/sacv_db
+      RABBITMQ_URL: amqp://sacv:${RABBITMQ_PASSWORD}@rabbitmq:5672
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - sacv_network
+    restart: unless-stopped
+
   # API Gateway
   api-gateway:
     build: ./services/api-gateway

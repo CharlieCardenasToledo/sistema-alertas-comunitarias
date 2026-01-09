@@ -351,6 +351,43 @@ GROUP BY type;
 
 ---
 
+### Poblar Base de Datos con Datos Históricos (Opcional)
+
+Para demostrar el sistema con datos de ejemplo, puedes poblar la base de datos con eventos históricos:
+
+**En Windows PowerShell**:
+```powershell
+Get-Content scripts/populate_historical_data.sql | docker exec -i sacv_postgres psql -U sacv_user -d sacv_db
+```
+
+**En Mac/Linux (Bash)**:
+```bash
+docker exec -i sacv_postgres psql -U sacv_user -d sacv_db < scripts/populate_historical_data.sql
+```
+
+**Esto insertará**:
+- 24 eventos históricos (últimos 30 días)
+- 11 sismos de diferentes magnitudes
+- 7 alertas meteorológicas
+- 6 cortes de energía programados
+- 5 usuarios de prueba
+
+**Verificar datos insertados**:
+```bash
+docker exec -it sacv_postgres psql -U sacv_user -d sacv_db -c "SELECT COUNT(*), type FROM events GROUP BY type;"
+```
+
+**Resultado esperado**:
+```
+ count |  type  
+-------+--------
+    11 | sismo
+     7 | lluvia
+     6 | corte
+```
+
+---
+
 ### Telegram Bot
 
 **Bot**: @AlertasComunitariasBot

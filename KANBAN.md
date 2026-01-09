@@ -24,13 +24,13 @@
 - [x] 1.11 Probar scraping end-to-end
 
 ### Fase II - Pipeline Completo
-- [ ] 2.1 Desarrollar Normalizer Service
-- [ ] 2.2 Desarrollar Verifier Service
-- [ ] 2.3 Desarrollar Notifier Service (Telegram)
-- [ ] 2.4 Desarrollar scrapers adicionales
-- [ ] 2.5 Desarrollar Admin Panel (Vue.js)
-- [ ] 2.6 Configurar Traefik
-- [ ] 2.7 Probar pipeline completo
+- [x] 2.1 Desarrollar Normalizer Service
+- [x] 2.2 Desarrollar Verifier Service
+- [x] 2.3 Desarrollar Notifier Service (Telegram)
+- [x] 2.4 Desarrollar scrapers adicionales
+- [ ] 2.5 Desarrollar Admin Panel (Vue.js) - PLANIFICADO
+- [ ] 2.6 Configurar Traefik - PLANIFICADO
+- [x] 2.7 Probar pipeline completo
 
 ### Fase III - Producción
 - [ ] 3.1 Configurar Prometheus
@@ -74,9 +74,9 @@
 
 ```
 Fase I:   11/11 (100%) [████████████████████] ✅
-Fase II:   0/7  (0%)   [                    ]
+Fase II:   5/7  (71%)  [██████████████      ]
 Fase III:  0/6  (0%)   [                    ]
-Total:    11/24 (46%)  [█████████           ]
+Total:    16/24 (67%)  [█████████████       ]
 ```
 
 ---

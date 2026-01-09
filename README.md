@@ -2,7 +2,7 @@
 
 Sistema de detección, verificación y notificación de eventos críticos (sismos, lluvias, cortes programados) mediante scraping de fuentes oficiales.
 
-## 🚀 Inicio Rápido
+## Inicio Rápido
 
 ```bash
 # 1. Configurar variables de entorno
@@ -19,7 +19,7 @@ docker-compose ps
 docker-compose logs -f
 ```
 
-## 📋 Acceso a Servicios
+## Acceso a Servicios
 
 - **API**: http://localhost:8000
 - **API Docs**: http://localhost:8000/docs
@@ -28,14 +28,14 @@ docker-compose logs -f
 - **Grafana**: http://localhost:3000 (user: admin, pass: ver .env)
 - **Prometheus**: http://localhost:9090
 
-## 🏗️ Arquitectura
+## Arquitectura
 
 Ver documentación completa en:
 - `SRS_COMPLETO_v2.md` - Especificación de requisitos
 - `architecture_overview.md` - Diagramas de arquitectura
 - `PLAN_IMPLEMENTACION.md` - Plan de implementación
 
-## 📦 Stack Tecnológico
+## Stack Tecnológico
 
 - **Backend**: Python 3.11 + FastAPI
 - **Scraping**: Scrapy + Playwright
@@ -45,10 +45,10 @@ Ver documentación completa en:
 - **Frontend**: Vue.js 3 + Vuetify
 - **Deployment**: Docker + Docker Compose
 
-## 📊 Estado del Proyecto
+## Estado del Proyecto
 
 Ver `KANBAN.md` para el estado actual de implementación.
 
-## 📝 Licencia
+## Licencia
 
 Proyecto académico - UIDE 2026

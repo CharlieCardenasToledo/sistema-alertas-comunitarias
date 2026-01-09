@@ -160,8 +160,16 @@ class NormalizerService:
         try:
             raw_payload = raw_event['raw_payload']
             
-            # Determinar tipo de evento (por ahora solo sismos)
-            event_type = 'sismo'
+            # Obtener tipo de evento desde la fuente
+            # Consultar tipo de la fuente en BD
+            cursor = self.db_conn.cursor()
+            cursor.execute("""
+                SELECT type FROM sources WHERE source_id = %s
+            """, (raw_event['source_id'],))
+            result = cursor.fetchone()
+            cursor.close()
+            
+            event_type = result[0] if result else 'sismo'
             
             # Extraer datos
             occurred_at = self.parse_occurred_at(raw_payload)

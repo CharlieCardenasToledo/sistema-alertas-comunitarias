@@ -13,6 +13,8 @@ import redis
 import structlog
 from apscheduler.schedulers.blocking import BlockingScheduler
 from scrapers.igepn_scraper import IGEPNScraper
+from scrapers.inamhi_scraper import InamhiScraper
+from scrapers.cnel_scraper import CnelScraper
 
 # Configurar logging estructurado
 structlog.configure(
@@ -39,7 +41,9 @@ class ScraperService:
         self.rabbitmq_channel = None
         self.scheduler = BlockingScheduler()
         self.scrapers = {
-            'sismo': IGEPNScraper
+            'sismo': IGEPNScraper,
+            'lluvia': InamhiScraper,
+            'corte': CnelScraper
         }
         
     def connect_db(self):
